@@ -53,8 +53,8 @@ routes.add(method: .get, uris: ["\(apiRoute)current/","/api/v1/current/{country}
 	request, response in
 
 	// set country and city from URI variables
-	let country = request.urlVariables["country"] ?? "Canada"
-	let city = request.urlVariables["city"] ?? "Newmarket"
+	let country = request.urlVariables["country"] ?? "CA"
+	let city = request.urlVariables["city"] ?? "San_Francisco"
 
 	// Setting the response content type explicitly to application/json
 	response.setHeader(.contentType, value: "application/json")
@@ -70,8 +70,8 @@ routes.add(method: .get, uris: ["\(apiRoute)forecast","/api/v1/forecast/{country
 	request, response in
 
 	// set country and city from URI variables
-	let country = request.urlVariables["country"] ?? "Canada"
-	let city = request.urlVariables["city"] ?? "Newmarket"
+	let country = request.urlVariables["country"] ?? "CA"
+	let city = request.urlVariables["city"] ?? "San_Francisco"
 
 	// Setting the response content type explicitly to application/json
 	response.setHeader(.contentType, value: "application/json")
