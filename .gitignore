@@ -62,6 +62,10 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 
+# EjE allow commit of xcode and config
+# *.xcodeproj
+# ApplicationConfiguration.json
+
 Packages/
-*.xcodeproj
-ApplicationConfiguration.json
+Perfect-Weather.xcodeproj/project.xcworkspace
+Perfect-Weather.xcodeproj/xcshareddata
