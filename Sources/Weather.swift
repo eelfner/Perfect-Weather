@@ -10,10 +10,9 @@ import PerfectLib
 
 class Weather {
 
-	// Get the
-	static func getCurrent(_ location: String = "CA/San_Francisco") -> String {
+	static func getCurrentWeather(location: String) -> String {
 
-		let data = getEndpoint(endpoint: "conditions/q/\(location).json", args: [], token: apiToken)
+		let data = getEndpoint(endpoint: "conditions/q/\(location).json", args: [], token: AppConfig.weatherUndergroundAPI_token)
         var trimmedData = [String:Any]()
         
         if let current_observation = data["current_observation"] as? [String: Any] {
@@ -32,9 +31,9 @@ class Weather {
 	}
 
 
-    static func getForecast(_ location: String = "CA/San_Francisco") -> String {
+    static func getForecast(location: String) -> String {
         
-        let data = getEndpoint(endpoint: "forecast/q/\(location).json", args: [], token: apiToken)
+        let data = getEndpoint(endpoint: "forecast/q/\(location).json", args: [], token: AppConfig.weatherUndergroundAPI_token)
         if let forecast = data["forecast"] as? [String: Any] {
             let txt_forecast = forecast["txt_forecast"] as! [String: Any]
             

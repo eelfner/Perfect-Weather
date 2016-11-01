@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B61710D11DC92C5E00BA012C /* ApplicationConfiguration.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = B61710CF1DC92C3E00BA012C /* ApplicationConfiguration.json */; };
+		B61710D31DC93E2800BA012C /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61710D21DC93E2800BA012C /* AppConfig.swift */; };
 		OBJ_1000 /* e_camellia.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_239 /* e_camellia.c */; };
 		OBJ_1001 /* e_capi.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_240 /* e_capi.c */; };
 		OBJ_1002 /* e_capi_err.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_241 /* e_capi_err.c */; };
@@ -514,7 +515,6 @@
 		OBJ_1564 /* jsonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_737 /* jsonConfig.swift */; };
 		OBJ_1566 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_748 /* PerfectLib.framework */; };
 		OBJ_1573 /* GetEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_739 /* GetEndpoint.swift */; };
-		OBJ_1574 /* GetToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_740 /* GetToken.swift */; };
 		OBJ_1575 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_741 /* main.swift */; };
 		OBJ_1576 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_742 /* Weather.swift */; };
 		OBJ_1578 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_748 /* PerfectLib.framework */; };
@@ -1052,6 +1052,7 @@
 
 /* Begin PBXFileReference section */
 		B61710CF1DC92C3E00BA012C /* ApplicationConfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ApplicationConfiguration.json; sourceTree = "<group>"; };
+		B61710D21DC93E2800BA012C /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Dir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dir.swift; sourceTree = "<group>"; };
 		OBJ_100 /* bn_mul.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bn_mul.c; sourceTree = "<group>"; };
 		OBJ_101 /* bn_nist.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bn_nist.c; sourceTree = "<group>"; };
@@ -1747,7 +1748,6 @@
 		OBJ_737 /* jsonConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonConfig.swift; sourceTree = "<group>"; };
 		OBJ_739 /* GetEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEndpoint.swift; sourceTree = "<group>"; };
 		OBJ_74 /* bio_cb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bio_cb.c; sourceTree = "<group>"; };
-		OBJ_740 /* GetToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetToken.swift; sourceTree = "<group>"; };
 		OBJ_741 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_742 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		OBJ_745 /* Perfect_WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perfect_WeatherTests.swift; sourceTree = "<group>"; };
@@ -2616,6 +2616,7 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_738 /* Perfect-Weather */,
 				OBJ_8 /* PerfectLib */,
 				OBJ_19 /* COpenSSL */,
 				OBJ_704 /* PerfectThread */,
@@ -2625,7 +2626,6 @@
 				OBJ_728 /* PerfectHTTPServer */,
 				OBJ_734 /* PerfectCURL */,
 				OBJ_736 /* JSONConfig */,
-				OBJ_738 /* Perfect-Weather */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -2733,9 +2733,9 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_739 /* GetEndpoint.swift */,
-				OBJ_740 /* GetToken.swift */,
 				OBJ_741 /* main.swift */,
 				OBJ_742 /* Weather.swift */,
+				B61710D21DC93E2800BA012C /* AppConfig.swift */,
 			);
 			name = "Perfect-Weather";
 			path = Sources;
@@ -3149,7 +3149,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_1573 /* GetEndpoint.swift in Sources */,
-				OBJ_1574 /* GetToken.swift in Sources */,
+				B61710D31DC93E2800BA012C /* AppConfig.swift in Sources */,
 				OBJ_1575 /* main.swift in Sources */,
 				OBJ_1576 /* Weather.swift in Sources */,
 			);

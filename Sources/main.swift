@@ -5,94 +5,48 @@
 //  Created by Jonathan Guthrie on 2016-09-27.
 //	Copyright (C) 2015 PerfectlySoft, Inc.
 //
-//===----------------------------------------------------------------------===//
-//
-// This source file is part of the Perfect.org open source project
-//
-// Copyright (c) 2015 - 2016 PerfectlySoft Inc. and the Perfect project authors
-// Licensed under Apache License v2.0
-//
-// See http://perfect.org/licensing.html for license information
-//
-//===----------------------------------------------------------------------===//
-//
-
-
 import PerfectLib
 import PerfectCURL
 import PerfectHTTP
 import PerfectHTTPServer
 
+private let apiCurrentWeatherDefault = "/api/v1/current/"
+private let apiCurrentWeatherStateCity = "/api/v1/current/{state}/{city}"
+private let apiForecastDefault = "/api/v1/forecast/"
+private let apiForecastStateCity = "/api/v1/forecast/{state}/{city}"
 
-// Settings path vars.
-#if os(Linux)
-	let FileRoot = "/home/ubuntu/settings/"
-#else
-	let FileRoot = ""
-#endif
-
-// base route for the API
-let apiRoute = "/api/v1/"
-// config for the server port
-let httpPort = 8181
-// fetch the token from the ApplicationConfiguration.json file
-let apiToken = getToken()
-
-
-
-// Create HTTP server.
 let server = HTTPServer()
-
-// Create the container variable for routes to be added to.
 var routes = Routes()
 
-
-
-// Adding a route to handle the GET people list URL
-routes.add(method: .get, uris: ["\(apiRoute)current/","/api/v1/current/{country}/{city}"], handler: {
+routes.add(method: .get, uris: [apiCurrentWeatherDefault, apiCurrentWeatherStateCity]) {
 	request, response in
 
-	// set country and city from URI variables
-	let country = request.urlVariables["country"] ?? "CA"
-	let city = request.urlVariables["city"] ?? "San_Francisco"
+	let state = request.urlVariables["state"] ?? AppConfig.defaultState
+	let city = request.urlVariables["city"] ?? AppConfig.defaultCity
 
-	// Setting the response content type explicitly to application/json
 	response.setHeader(.contentType, value: "application/json")
-	// Setting the body response to the JSON list generated
-	response.appendBody(string: Weather.getCurrent("\(country)/\(city)"))
-	// Signalling that the request is completed
+	response.appendBody(string: Weather.getCurrentWeather(location: "\(state)/\(city)"))
 	response.completed()
-	}
-)
+}
 
-// Adding a route to handle the GET people list URL
-routes.add(method: .get, uris: ["\(apiRoute)forecast","/api/v1/forecast/{country}/{city}"], handler: {
+routes.add(method: .get, uris: [apiForecastDefault, apiForecastStateCity]) {
 	request, response in
 
-	// set country and city from URI variables
-	let country = request.urlVariables["country"] ?? "CA"
-	let city = request.urlVariables["city"] ?? "San_Francisco"
+	let state = request.urlVariables["state"] ?? AppConfig.defaultState
+	let city = request.urlVariables["city"] ?? AppConfig.defaultCity
 
-	// Setting the response content type explicitly to application/json
 	response.setHeader(.contentType, value: "application/json")
-	// Setting the body response to the JSON list generated
-	response.appendBody(string: Weather.getForecast("\(country)/\(city)"))
-	// Signalling that the request is completed
+	response.appendBody(string: Weather.getForecast(location: "\(state)/\(city)"))
 	response.completed()
-	}
-)
+}
 
-
-
-// Add the routes to the server.
+// Start Http Server for defined routes on configured port.
 server.addRoutes(routes)
-
-// Set a listen port
-server.serverPort = UInt16(httpPort)
+server.serverPort = UInt16(AppConfig.serverHttpPort)
 
 do {
-	// Launch the HTTP server.
 	try server.start()
-} catch PerfectError.networkError(let err, let msg) {
+}
+catch PerfectError.networkError(let err, let msg) {
 	print("Network error thrown: \(err) \(msg)")
 }
