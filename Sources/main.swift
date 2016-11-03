@@ -49,7 +49,7 @@ routes.add(method: .get, uris: [apiCatchAll]) { request, response in
     let currentDate = dateFormatter.string(from: Date())
     
     response.setHeader(.contentType, value: "application/json")
-    response.appendBody(string: "Catch all at: \(currentDate)")
+    response.appendBody(string: "Catch all EJE at: \(currentDate)")
     response.completed()
 }
 
