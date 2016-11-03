@@ -9,7 +9,9 @@ import PerfectLib
 import PerfectCURL
 import PerfectHTTP
 import PerfectHTTPServer
+import Foundation
 
+private let apiCatchAll = "/**"
 private let apiCurrentWeatherDefault = "/api/v1/current/"
 private let apiCurrentWeatherStateCity = "/api/v1/current/{state}/{city}"
 private let apiForecastDefault = "/api/v1/forecast/"
@@ -38,6 +40,17 @@ routes.add(method: .get, uris: [apiForecastDefault, apiForecastStateCity]) {
 	response.setHeader(.contentType, value: "application/json")
 	response.appendBody(string: Weather.getForecast(location: "\(state)/\(city)"))
 	response.completed()
+}
+
+routes.add(method: .get, uris: [apiCatchAll]) { request, response in
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    //dateFormatter.locale = Locale("en_US_POSIX")
+    let currentDate = dateFormatter.string(from: Date())
+    
+    response.setHeader(.contentType, value: "application/json")
+    response.appendBody(string: "Catch all at: \(currentDate)")
+    response.completed()
 }
 
 // Start Http Server for defined routes on configured port.
